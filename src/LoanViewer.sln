@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanViewer.Api", "LoanViewer.Api\LoanViewer.Api.csproj", "{49C0A53E-85E1-4B28-9092-5207F79024C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanViewer.Client", "LoanViewer.Client\LoanViewer.Client.csproj", "{F253FFC4-A9F2-4F77-BD2E-13E0632E97E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49C0A53E-85E1-4B28-9092-5207F79024C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C0A53E-85E1-4B28-9092-5207F79024C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C0A53E-85E1-4B28-9092-5207F79024C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C0A53E-85E1-4B28-9092-5207F79024C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F253FFC4-A9F2-4F77-BD2E-13E0632E97E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F253FFC4-A9F2-4F77-BD2E-13E0632E97E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F253FFC4-A9F2-4F77-BD2E-13E0632E97E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F253FFC4-A9F2-4F77-BD2E-13E0632E97E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
