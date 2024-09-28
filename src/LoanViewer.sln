@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanViewer.Api", "LoanViewe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanViewer.Client", "LoanViewer.Client\LoanViewer.Client.csproj", "{F253FFC4-A9F2-4F77-BD2E-13E0632E97E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanViewer.Test", "LoanViewer.Test\LoanViewer.Test.csproj", "{FE7628BA-5521-4420-B379-2032C7620206}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{F253FFC4-A9F2-4F77-BD2E-13E0632E97E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F253FFC4-A9F2-4F77-BD2E-13E0632E97E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F253FFC4-A9F2-4F77-BD2E-13E0632E97E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE7628BA-5521-4420-B379-2032C7620206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7628BA-5521-4420-B379-2032C7620206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7628BA-5521-4420-B379-2032C7620206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7628BA-5521-4420-B379-2032C7620206}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
