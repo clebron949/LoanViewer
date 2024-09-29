@@ -15,7 +15,7 @@ public class LoanCalculationsTest
     [Test]
     [TestCase(1000, 1.0, 1, 84.17)]
     [TestCase(50_000, 5.0, 10, 539)]
-    public void GetMonthlyPaymentsTest(
+    public void GetMonthlyPaymentTest(
         double amount,
         double rate,
         int terms,
@@ -23,14 +23,14 @@ public class LoanCalculationsTest
     )
     {
         _loanService.SetLoanDetails(amount, rate, terms);
-        var monthlyPayment = Convert.ToDouble(_loanService.MonthlyPayment!.Replace("$", ""));
+        var monthlyPayment = _loanService.AmortizationTable.MonthlyPayment;
         Assert.That(monthlyPayment, Is.EqualTo(expectedMonthlyPayment).Within(1));
     }
 
     [Test]
     [TestCase(1000, 1.0, 1, 1010)]
     [TestCase(50_000, 5.0, 10, 6_475)]
-    public void GetYearlyPaymentsTest(
+    public void GetYearlyPaymentTest(
         double amount,
         double rate,
         int terms,
@@ -38,7 +38,7 @@ public class LoanCalculationsTest
     )
     {
         _loanService.SetLoanDetails(amount, rate, terms);
-        var yearlyPayment = Convert.ToDouble(_loanService.YearlyPayment!.Replace("$", ""));
+        var yearlyPayment = _loanService.AmortizationTable.YearlyPayment;
         Assert.That(expectedYearlyPayment, Is.EqualTo(yearlyPayment).Within(1));
     }
 

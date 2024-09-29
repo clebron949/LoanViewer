@@ -9,10 +9,9 @@ public class LoanCalculationService
     public int Terms { get; private set; }
 
     public AmortizationTable AmortizationTable => GetAmortizationTable();
-    public string? MonthlyPayment => "$" + GetMonthlyPayment().ToString("N");
-    public string? YearlyPayment => "$" + GetYearlyPayment().ToString("N");
-    public string? TotalInterest =>
-        "$" + AmortizationTable.AmortizationTableItems.Select(x => x.InterestPaid).Sum().ToString("N");
+    public string? MonthlyPayment => "$" + AmortizationTable.MonthlyPayment.ToString("N");
+    public string? YearlyPayment => "$" + AmortizationTable.YearlyPayment.ToString("N");
+    public string? TotalInterest => "$" + AmortizationTable.TotalInterest.ToString("N");
 
     public void SetLoanDetails(
         double amount,
@@ -21,14 +20,14 @@ public class LoanCalculationService
         LoanTerms.TermType term = LoanTerms.TermType.Yearly
     )
     {
-        var loanTermns = new LoanTerms
+        var loanTerms = new LoanTerms
         {
             Amount = amount,
             Rate = rate,
             Duration = terms,
             Term = term
         };
-        SetLoanDetails(loanTermns);
+        SetLoanDetails(loanTerms);
     }
 
     public void SetLoanDetails(LoanTerms loanTerms)
