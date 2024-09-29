@@ -1,10 +1,18 @@
 namespace LoanViewer.Api.Models;
 
-public class AmortizationTableItem
+public class AmortizationTable
 {
-    public int PaymentNumber { get; set; }
-    public double PaymentAmount { get; set; }
-    public double InterestPaid { get; set; }
-    public double PrincipalPaid { get; set; }
-    public double RemainingBalance { get; set; }
+    public double MonthlyPayment { get; set; }
+    public double YearlyPayment { get; set; }
+    public double TotalInterest => AmortizationTableItems.Select(x => x.InterestPaid).Sum();
+    public List<AmortizationTableItem> AmortizationTableItems { get; set; } = [];
 }
+
+public record AmortizationTableItem(
+    int Term,
+    double PrincipalPaid,
+    double InterestPaid,
+    double RemainingPrincipal,
+    double BeginningBalance,
+    double EndingBalance
+);

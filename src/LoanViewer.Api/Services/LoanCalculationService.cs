@@ -8,11 +8,11 @@ public class LoanCalculationService
     public double Rate { get; private set; }
     public int Terms { get; private set; }
 
-    public List<AmortizationTableItem> AmortizationTable => GetAmortizationTable();
+    public AmortizationTable AmortizationTable => GetAmortizationTable();
     public string? MonthlyPayment => "$" + GetMonthlyPayment().ToString("N");
     public string? YearlyPayment => "$" + GetYearlyPayment().ToString("N");
     public string? TotalInterest =>
-        "$" + AmortizationTable.Select(x => x.InterestPaid).Sum().ToString("N");
+        "$" + AmortizationTable.AmortizationTableItems.Select(x => x.InterestPaid).Sum().ToString("N");
 
     public void SetLoanDetails(
         double amount,
@@ -47,9 +47,13 @@ public class LoanCalculationService
 
     private double GetMonthlyPayment() => GetYearlyPayment() / 12;
 
-    private List<AmortizationTableItem> GetAmortizationTable()
+    private AmortizationTable GetAmortizationTable()
     {
-        var amortizationTable = new List<AmortizationTableItem>();
+        var amortizationTable = new AmortizationTable
+        {
+            MonthlyPayment = GetMonthlyPayment(),
+            YearlyPayment = GetYearlyPayment()
+        };
         var beginningBalance = Amount;
         var totalInterestPaid = 0.00;
         var yearlyPayment = GetYearlyPayment();
@@ -60,20 +64,16 @@ public class LoanCalculationService
             var principalPaid = yearlyPayment - interestPaid;
             var remainingPrincipal = beginningBalance - principalPaid;
             remainingPrincipal = (remainingPrincipal < 1) ? 0 : remainingPrincipal;
-            var item = new AmortizationTableItem
-            {
-                /*
-                  Years = $"{i + 1}",
-                  BeginningBalance = "$" + beginningBalance.ToString("N"),
-                  YearlyPayment = "$" + yearlyPayment.ToString("N"),
-                  InterestPaid = "$" + interestPaid.ToString("N"),
-                  PrincipalPaid = "$" + principalPaid.ToString("N"),
-                  RemainingPrincipal = "$" + remainingPrincipal.ToString("N"),
-                  MonthlyPayment = "$" + GetMonthlyPayment().ToString("N"),
-                  TotalInterestPaid = "$" + totalInterestPaid.ToString("N")
-                */
-            };
-            amortizationTable.Add(item);
+            amortizationTable.AmortizationTableItems.Add(
+                new AmortizationTableItem(
+                    Term: i + 1,
+                    PrincipalPaid: principalPaid,
+                    InterestPaid: interestPaid,
+                    RemainingPrincipal: remainingPrincipal,
+                    BeginningBalance: beginningBalance,
+                    EndingBalance: remainingPrincipal
+                )
+            );
             beginningBalance = remainingPrincipal;
         }
         return amortizationTable;
