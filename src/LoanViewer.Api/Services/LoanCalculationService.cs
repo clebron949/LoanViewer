@@ -9,9 +9,9 @@ public class LoanCalculationService
     public int Terms { get; private set; }
 
     public AmortizationTable AmortizationTable => GetAmortizationTable();
-    public string? MonthlyPayment => "$" + AmortizationTable.MonthlyPayment.ToString("N");
-    public string? YearlyPayment => "$" + AmortizationTable.YearlyPayment.ToString("N");
-    public string? TotalInterest => "$" + AmortizationTable.TotalInterest.ToString("N");
+    public string? MonthlyPayment => AmortizationTable.MonthlyPayment.ToString("C");
+    public string? YearlyPayment => AmortizationTable.YearlyPayment.ToString("C");
+    public string? TotalInterest => AmortizationTable.TotalInterest.ToString("C");
 
     public void SetLoanDetails(
         double amount,
@@ -66,11 +66,10 @@ public class LoanCalculationService
             amortizationTable.AmortizationTableItems.Add(
                 new AmortizationTableItem(
                     Term: i + 1,
+                    BeginningBalance: beginningBalance,
                     PrincipalPaid: principalPaid,
                     InterestPaid: interestPaid,
-                    RemainingPrincipal: remainingPrincipal,
-                    BeginningBalance: beginningBalance,
-                    EndingBalance: remainingPrincipal
+                    RemainingPrincipal: remainingPrincipal
                 )
             );
             beginningBalance = remainingPrincipal;

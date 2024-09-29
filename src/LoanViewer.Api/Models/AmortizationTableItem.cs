@@ -10,9 +10,8 @@ public class AmortizationTable
 
 public record AmortizationTableItem(
     int Term,
-    double PrincipalPaid,
-    double InterestPaid,
-    double RemainingPrincipal,
     double BeginningBalance,
-    double EndingBalance
+    double InterestPaid,
+    double PrincipalPaid,
+    double RemainingPrincipal
 );

@@ -1,30 +1,46 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">LoanViewer.Client</a>
+﻿@inject ILogger<NavMenu> Logger
+
+<div class="top-row justify-content-center navbar navbar-dark">
+    <div class="">
+        <a class="navbar-brand text-center" href="">Loan Viewer</a>
     </div>
 </div>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
+<div class="nav-scrollable" onclick="">
+    <EditForm Model="formModel" class="py-3" @OnSubmit="FormSubmit" FormName="LoanCalculation">
+        <div class="d-flex flex-column gap-3 px-3">
+            <div class="form-group">
+                <label for="LoanAmount" class="text-white form-label">Loan Amount</label>
+                <InputText id="LoanAmount" class="form-control" @bind-Value="formModel.LoanAmount" />
+            </div>
+            <div class="form-group">
+                <label for="InterestRate" class="text-white form-label">Interest Rate</label>
+                <InputText id="InterestRate" class="form-control" @bind-Value="formModel.InterestRate" />
+            </div>
+            <div class="form-group">
+                <label for="Term" class="text-white form-label">Term</label>
+                <InputText id="Term" class="form-control" @bind-Value="formModel.Term" />
+            </div>
+            <button type="submit" class="btn btn-danger mt-3">Calculate</button>
         </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-    </nav>
+    </EditForm>
 </div>
 
+@code {
+
+    private FormModel formModel = new FormModel();
+
+    private void FormSubmit()
+    {
+        Logger.LogInformation("Form submitted");
+        Logger.LogInformation($"Loan Amount: {formModel.LoanAmount}");
+        Logger.LogInformation($"Interest Rate: {formModel.InterestRate}");
+        Logger.LogInformation($"Term: {formModel.Term}");
+    }
+    class FormModel
+    {
+        public string LoanAmount { get; set; } = "";
+        public string InterestRate { get; set; } = "";
+        public string Term { get; set; } = "";
+    }
+}
